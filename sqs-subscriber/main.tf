@@ -1,4 +1,5 @@
 resource "aws_sqs_queue" "sqs" {
+  for_each = var.event_names
   name       = "${var.name}-${var.environment}${var.fifo == true ? ".fifo" : ""}"
   fifo_queue = true
 }
