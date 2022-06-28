@@ -25,7 +25,7 @@ variable "event_names" {
   type = list(string)
 }
 
-variable "application_iam_role_arn" {
+variable "application_iam_role_name" {
   type = string
   default = ""
 }
