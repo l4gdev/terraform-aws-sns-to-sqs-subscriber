@@ -7,15 +7,17 @@ resource "aws_iam_role_policy" "test_policy" {
 
 
 data "aws_iam_policy_document" "allow" {
-  sid = "1"
+  statement {
+    sid = "1"
 
-  actions = [
-    "sqs:ListQueues",
-    "sqs:GetQueueUrl",
-    "sqs:ListDeadLetterSourceQueues",
-    "sqs:ReceiveMessage",
-    "sqs:GetQueueAttributes",
-    "sqs:ListQueueTags"
-  ]
-  resources = [aws_sqs_queue.sqs.arn]
+    actions = [
+      "sqs:ListQueues",
+      "sqs:GetQueueUrl",
+      "sqs:ListDeadLetterSourceQueues",
+      "sqs:ReceiveMessage",
+      "sqs:GetQueueAttributes",
+      "sqs:ListQueueTags"
+    ]
+    resources = [aws_sqs_queue.sqs.arn]
+  }
 }
