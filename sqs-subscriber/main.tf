@@ -31,9 +31,7 @@ resource "aws_sns_topic_subscription" "sns" {
   topic_arn = var.sns_arn
   protocol  = "sqs"
   endpoint  = aws_sqs_queue.sqs.arn
-  filter_policy = jsonencode({
-    "${var.event_key_name}" : var.event_names
-  })
+  filter_policy = jsonencode(var.filters)
 }
 
 
