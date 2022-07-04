@@ -17,7 +17,7 @@ variable "sns_arn" {
 }
 
 variable "filters" {
-  type = object({})
+  type = any
 }
 
 variable "application_iam_role_name" {
