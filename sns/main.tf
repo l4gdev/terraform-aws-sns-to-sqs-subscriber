@@ -1,5 +1,5 @@
 resource "aws_sns_topic" "sns" {
-  name       = "${var.name}-${var.environment}${var.fifo == true ? ".fifo" : ""}"
+  name       = "${var.environment}-${var.name}${var.fifo == true ? ".fifo" : ""}"
   fifo_topic = var.fifo
 }
 
