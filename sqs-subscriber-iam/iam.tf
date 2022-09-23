@@ -2,7 +2,7 @@ variable "application_iam_role_name" {
   type = string
 }
 resource "aws_iam_role_policy" "sqs" {
-  name   = "${replace(var.sqs_name,".","-")}"
+  name   = replace(var.sqs_name, ".", "-")
   role   = var.application_iam_role_name
   policy = data.aws_iam_policy_document.allow.json
 }

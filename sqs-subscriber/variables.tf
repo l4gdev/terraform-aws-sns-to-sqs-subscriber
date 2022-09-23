@@ -1,6 +1,15 @@
-
 variable "name" {
   type = string
+}
+
+variable "dlq" {
+  type = object({
+    enable            = optional(bool, false)
+    max_receive_count = optional(number, 2)
+  })
+  default = {
+    enable = false
+  }
 }
 
 variable "environment" {
