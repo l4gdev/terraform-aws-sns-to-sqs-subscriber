@@ -5,8 +5,6 @@ resource "aws_iam_role_policy" "test_policy" {
   policy = data.aws_iam_policy_document.allow.json
 }
 
-
-
 data "aws_iam_policy_document" "allow" {
   statement {
     sid = "1"

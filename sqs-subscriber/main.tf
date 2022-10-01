@@ -23,8 +23,9 @@ resource "aws_sqs_queue" "deadletter" {
 
 
 resource "aws_sqs_queue_policy" "policy" {
-  queue_url = aws_sqs_queue.sqs.id
+  count = var.sns_arn != "" ? 1 : 0
 
+  queue_url = aws_sqs_queue.sqs.id
   policy = jsonencode(
     {
       "Version" : "2012-10-17",
@@ -47,10 +48,11 @@ resource "aws_sqs_queue_policy" "policy" {
 }
 
 resource "aws_sns_topic_subscription" "sns" {
+  count = var.sns_arn != "" ? 1 : 0
+
   topic_arn     = var.sns_arn
   protocol      = "sqs"
   endpoint      = aws_sqs_queue.sqs.arn
   filter_policy = jsonencode(var.filters)
 }
-
 

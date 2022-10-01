@@ -22,11 +22,13 @@ variable "fifo" {
 }
 
 variable "sns_arn" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "filters" {
-  type = any
+  type    = any
+  default = ""
 }
 
 variable "application_iam_role_name" {
