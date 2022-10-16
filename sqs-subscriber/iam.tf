@@ -15,7 +15,7 @@ data "aws_iam_policy_document" "allow" {
       "sqs:ListDeadLetterSourceQueues",
       "sqs:ReceiveMessage",
       "sqs:GetQueueAttributes",
-      "sqs:ListQueueTags"
+      "sqs:ListQueueTags",
     ]
     resources = [aws_sqs_queue.sqs.arn]
   }

@@ -35,3 +35,11 @@ variable "application_iam_role_name" {
   type    = string
   default = ""
 }
+
+variable "settings" {
+  type = object({
+      deduplication_scope   = optional(string, null)
+    content_based_deduplication = optional(bool, false)
+  })
+  default = {}
+}
