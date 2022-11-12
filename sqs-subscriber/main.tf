@@ -66,7 +66,7 @@ locals {
           "Resource" : aws_sqs_queue.sqs.arn,
           "Condition" : {
             "ArnEquals" : {
-              "aws:SourceArn" : "arn:aws:events:eu-west-2:235530087925:*"
+              "aws:SourceArn" : "arn:aws:events:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"
             }
           }
         }
@@ -101,13 +101,15 @@ locals {
           "Resource" : aws_sqs_queue.deadletter[0].arn,
           "Condition" : {
             "ArnEquals" : {
-              "aws:SourceArn" : "arn:aws:events:eu-west-1:235530087925:*"
+              "aws:SourceArn" : "arn:aws:events:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"
             }
           }
         }
       ]
   })
 }
+data "aws_region" "current" {}
+data "aws_caller_identity" "current" {}
 
 resource "aws_sns_topic_subscription" "sns" {
   count = var.sns_arn != "" ? 1 : 0
