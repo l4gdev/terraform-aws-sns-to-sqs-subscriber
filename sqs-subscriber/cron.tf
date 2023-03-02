@@ -5,7 +5,7 @@ variable "cron_rule" {
 
 resource "aws_cloudwatch_event_rule" "rule" {
   for_each            = (try(var.filters["eventName"], []) != []) && (var.cron_rule != null) ? toset(var.filters["eventName"]) : toset([])
-  name                = replace("${substr(var.environment, 0, 5)}-${var.name}-${substr(each.value, 0, 5)}","_","-")
+  name                = replace("${substr(var.environment, 0, 5)}-${var.name}-${substr(each.value, 0, 5)}", "_", "-")
   schedule_expression = var.cron_rule
   tags = {
     eventName = each.key

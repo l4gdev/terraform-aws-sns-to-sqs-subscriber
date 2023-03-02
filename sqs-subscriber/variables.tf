@@ -4,8 +4,9 @@ variable "name" {
 
 variable "dlq" {
   type = object({
-    enable            = optional(bool, false)
-    max_receive_count = optional(number, 2)
+    enable                    = optional(bool, false)
+    max_receive_count         = optional(number, 2)
+    message_retention_seconds = optional(number, 345600)
   })
   default = {
     enable = false
@@ -38,7 +39,7 @@ variable "application_iam_role_name" {
 
 variable "settings" {
   type = object({
-      deduplication_scope   = optional(string, null)
+    deduplication_scope         = optional(string, null)
     content_based_deduplication = optional(bool, false)
   })
   default = {}
