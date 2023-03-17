@@ -4,15 +4,20 @@ variable "name" {
 
 variable "dlq" {
   type = object({
-    enable                    = optional(bool, false)
-    max_receive_count         = optional(number, 2)
-    message_retention_seconds = optional(number, 345600)
+    enable                     = optional(bool, false)
+    max_receive_count          = optional(number, 2)
+    message_retention_seconds  = optional(number, 345600)
+    visibility_timeout_seconds = optional(number, 30)
   })
   default = {
     enable = false
   }
 }
 
+variable "visibility_timeout_seconds" {
+  default = 30
+  type    = number
+}
 variable "environment" {
   type = string
 }

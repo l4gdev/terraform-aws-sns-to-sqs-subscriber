@@ -1,6 +1,7 @@
 resource "aws_sqs_queue" "sqs" {
   name                        = replace("${var.environment}-${var.name}${var.fifo == true ? ".fifo" : ""}", "_", "-")
   fifo_queue                  = var.fifo
+  visibility_timeout_seconds  = var.visibility_timeout_seconds
   content_based_deduplication = var.cron_rule != null ? true : var.settings.content_based_deduplication
   #  deduplication_scope   = try(var.settings.deduplication_scope, var.cron_rule != null? "perMessageGroupId": null)
 }
@@ -16,10 +17,12 @@ resource "aws_sqs_queue_redrive_policy" "policy" {
 }
 
 resource "aws_sqs_queue" "deadletter" {
-  count                     = var.dlq.enable ? 1 : 0
-  name                      = replace("${var.environment}-${var.name}-dl${var.fifo == true ? ".fifo" : ""}", "_", "-")
-  message_retention_seconds = var.dlq.message_retention_seconds
-  fifo_queue                = var.fifo
+  count                      = var.dlq.enable ? 1 : 0
+  name                       = replace("${var.environment}-${var.name}-dl${var.fifo == true ? ".fifo" : ""}", "_", "-")
+  message_retention_seconds  = var.dlq.message_retention_seconds
+  visibility_timeout_seconds = var.dlq.visibility_timeout_seconds
+  fifo_queue                 = var.fifo
+
   redrive_allow_policy = jsonencode({
     redrivePermission = "byQueue",
     sourceQueueArns   = [aws_sqs_queue.sqs.arn]

@@ -81,13 +81,14 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_application_iam_role_name"></a> [application\_iam\_role\_name](#input\_application\_iam\_role\_name) | n/a | `string` | `""` | no |
 | <a name="input_cron_rule"></a> [cron\_rule](#input\_cron\_rule) | n/a | `any` | `null` | no |
-| <a name="input_dlq"></a> [dlq](#input\_dlq) | n/a | <pre>object({<br>    enable                    = optional(bool, false)<br>    max_receive_count         = optional(number, 2)<br>    message_retention_seconds = optional(number, 345600)<br>  })</pre> | <pre>{<br>  "enable": false<br>}</pre> | no |
+| <a name="input_dlq"></a> [dlq](#input\_dlq) | n/a | <pre>object({<br>    enable                     = optional(bool, false)<br>    max_receive_count          = optional(number, 2)<br>    message_retention_seconds  = optional(number, 345600)<br>    visibility_timeout_seconds = optional(number, 30)<br>  })</pre> | <pre>{<br>  "enable": false<br>}</pre> | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | n/a | `string` | n/a | yes |
 | <a name="input_fifo"></a> [fifo](#input\_fifo) | n/a | `bool` | `false` | no |
 | <a name="input_filters"></a> [filters](#input\_filters) | n/a | `any` | `""` | no |
 | <a name="input_name"></a> [name](#input\_name) | n/a | `string` | n/a | yes |
 | <a name="input_settings"></a> [settings](#input\_settings) | n/a | <pre>object({<br>    deduplication_scope         = optional(string, null)<br>    content_based_deduplication = optional(bool, false)<br>  })</pre> | `{}` | no |
 | <a name="input_sns_arn"></a> [sns\_arn](#input\_sns\_arn) | n/a | `string` | `""` | no |
+| <a name="input_visibility_timeout_seconds"></a> [visibility\_timeout\_seconds](#input\_visibility\_timeout\_seconds) | n/a | `number` | `30` | no |
 
 ## Outputs
 
