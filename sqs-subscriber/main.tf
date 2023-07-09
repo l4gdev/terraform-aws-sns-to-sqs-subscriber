@@ -123,4 +123,3 @@ resource "aws_sns_topic_subscription" "sns" {
   endpoint      = aws_sqs_queue.sqs.arn
   filter_policy = jsonencode(var.filters)
 }
-

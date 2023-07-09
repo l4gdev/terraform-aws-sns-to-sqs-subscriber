@@ -7,6 +7,10 @@ output "arn" {
   value = aws_sns_topic.sns.arn
 }
 
+output "name" {
+  value = aws_sns_topic.sns.name
+}
+
 variable "name" {
   type = string
 }
